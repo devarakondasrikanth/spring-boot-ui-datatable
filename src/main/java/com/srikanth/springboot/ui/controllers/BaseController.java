@@ -3,6 +3,7 @@
  */
 package com.srikanth.springboot.ui.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.srikanth.springboot.ui.domain.Employee;
 import com.srikanth.springboot.ui.domain.User;
 import com.srikanth.springboot.ui.domain.pagination.DataTableRequest;
 import com.srikanth.springboot.ui.domain.pagination.DataTableResults;
@@ -45,8 +47,17 @@ public class BaseController {
 	public ModelAndView home(@RequestParam(value = "name", defaultValue = "World") String name) {
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("userModel", new User());
-		List<User> userList  = userRepo.findAll();;
+		List<User> userList  = userRepo.findAll();
 		mv.addObject("userlist", userList);
+		List<Employee> empList = new ArrayList<Employee>();
+		empList.add(new Employee("D123577","Srikanth",32));
+		empList.add(new Employee("D123578","Srikanth",31));
+		empList.add(new Employee("D123579","Srikanth",34));
+		empList.add(new Employee("D123580","Srikanth",35));
+		empList.add(new Employee("D123581","Srikanth",36));
+		empList.add(new Employee("D123581","Srikanth",37));
+		empList.add(new Employee("D123583","Srikanth",38));
+		mv.addObject("empList",empList);
 		return mv;
 	}
 	

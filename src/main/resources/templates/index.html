@@ -81,7 +81,42 @@
 		            </tbody>
 		        </table>
 		       </div>
+		       
+		      
   </div>
+  
+  
+  
+</div>
+
+<div class="panel panel-default" th:fragment="listUserData" id="listUserData">
+  <div class="panel-heading">
+    <h3 class="panel-title">List Employee Data</h3>
+  </div>
+  <div class="panel-body">
+   <div class="table-responsive">
+		        <table class="table table-striped">
+		            <thead>
+		                <tr>
+		                    <th>EmpId</th>
+		                    <th>EmpName</th>
+		                    <th>EmpAge</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr th:each="employee : ${empList}">
+		                    <td th:text="${employee.empId}">Id</td>
+		                    <td th:text="${employee.empName}">Username</td>
+		                    <td th:text="${employee.empAge}">Age</td>
+		                </tr>
+		            </tbody>
+		        </table>
+		       </div>       
+		      
+  </div>
+  
+  
+  
 </div>
 
 </div>
