@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -38,13 +39,12 @@ public class BaseController {
 	@Autowired
 	private UserRepository userRepo;
 	
-	/** The entity manager. */
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 		
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public ModelAndView home(@RequestParam(value = "name", defaultValue = "World") String name) {
+	@RequestMapping(value="/index", method = RequestMethod.GET)
+	public ModelAndView home(@RequestParam(value = "name", defaultValue = "World") String name,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("userModel", new User());
 		List<User> userList  = userRepo.findAll();
@@ -59,6 +59,11 @@ public class BaseController {
 		empList.add(new Employee("D123583","Srikanth",38));
 		mv.addObject("empList",empList);
 		return mv;
+	}
+	
+	@RequestMapping(value="/", method = RequestMethod.GET)
+	public ModelAndView getLoginPage(){
+		return new ModelAndView("login");
 	}
 	
 	@RequestMapping(value="/users", method=RequestMethod.GET)
